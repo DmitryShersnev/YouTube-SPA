@@ -1,5 +1,9 @@
 import { useSelector } from "react-redux";
-import { selectRequest, selectVideos } from "./redux/InputSearchSlice";
+import {
+  selectRequest,
+  selectVideos,
+  selectLoading,
+} from "./redux/InputSearchSlice";
 import VideoCard from "./VideoCard";
 import { useDispatch } from "react-redux";
 
@@ -12,6 +16,7 @@ const VideoList = () => {
   const request = useSelector(selectRequest);
   const dipatch = useDispatch();
   const style = useSelector(selectStyle);
+  const loading = useSelector(selectLoading);
 
   const handleClickList = () => {
     dipatch(listStyle());
@@ -20,7 +25,9 @@ const VideoList = () => {
     dipatch(cardStyle());
   };
 
-  return (
+  return loading ? (
+    <p>Загрузка...</p>
+  ) : (
     <>
       <div
         style={{

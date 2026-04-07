@@ -5,6 +5,7 @@ const initialState = {
   request: "",
   videos: [],
   done: false,
+  loading: false,
 };
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -42,13 +43,18 @@ const inputSearchSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchVideos.pending, (state, action) => {
+        state.loading = true;
+      })
       .addCase(fetchVideos.fulfilled, (state, action) => {
         state.videos = action.payload.items;
         state.request = state.inputSearch;
         state.done = true;
+        state.loading = false;
       })
       .addCase(fetchVideos.rejected, (state, action) => {
         console.log(action.payload);
+        state.loading = false;
       });
   },
   selectors: {
@@ -56,11 +62,17 @@ const inputSearchSlice = createSlice({
     selectVideos: (state) => state.videos,
     selectDone: (state) => state.done,
     selectRequest: (state) => state.request,
+    selectLoading: (state) => state.loading,
   },
 });
 
 export const { change, clear } = inputSearchSlice.actions;
-export const { selectVideos, selectInputSearch, selectDone, selectRequest } =
-  inputSearchSlice.selectors;
+export const {
+  selectVideos,
+  selectInputSearch,
+  selectDone,
+  selectRequest,
+  selectLoading,
+} = inputSearchSlice.selectors;
 
 export default inputSearchSlice.reducer;

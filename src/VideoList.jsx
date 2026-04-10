@@ -25,9 +25,10 @@ const VideoList = () => {
     dipatch(cardStyle());
   };
 
-  return loading ? (
-    <p>Загрузка...</p>
-  ) : (
+  if (loading) {
+    return <p>Загрузка...</p>;
+  }
+  return (
     <>
       <div
         style={{
@@ -42,19 +43,15 @@ const VideoList = () => {
         </div>
       </div>
 
-      {style === "list" ? (
-        <div className="video-list">
-          {videos.map((item) => (
-            <VideoCard key={item.id.videoId} item={item} isList={true} />
-          ))}
-        </div>
-      ) : (
-        <div className="video-cards">
-          {videos.map((item) => (
-            <VideoCard key={item.id.videoId} item={item} isList={false} />
-          ))}
-        </div>
-      )}
+      <div className={style === "list" ? "video-list" : "video-cards"}>
+        {videos.map((item) => (
+          <VideoCard
+            key={item.id.videoId}
+            item={item}
+            isList={style === "list"}
+          />
+        ))}
+      </div>
     </>
   );
 };

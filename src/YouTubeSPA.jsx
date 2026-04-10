@@ -11,7 +11,7 @@ const YouTubeSPA = () => {
     <>
       <Header />
       <InputSearch />
-      {done ? <VideoList /> : null}
+      {done && <VideoList />}
     </>
   );
 };

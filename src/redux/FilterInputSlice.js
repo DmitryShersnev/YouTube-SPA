@@ -15,10 +15,10 @@ const filterInputSlice = createSlice({
       state.inputString = "";
     },
   },
-  // selectors: { selectInputString: (state) => state.inputString },
+  selectors: { selectInputString: (state) => state.inputString },
 });
 
-// export const { selectInputString } = filterInputSlice.selectors;
-export const selectInputString = (state) => state.inputString.inputString;
+export const { selectInputString } = filterInputSlice.selectors;
+// export const selectInputString = (state) => state.inputString.inputString;
 export const { changeInput, clearInput } = filterInputSlice.actions;
 export default filterInputSlice.reducer;

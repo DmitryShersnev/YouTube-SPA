@@ -14,7 +14,7 @@ export const store = configureStore({
     inputSearch: inputSearchReducer,
     favorites: favoritesReducer,
     modal: modalReducer,
-    style: styleReducer,
-    inputString: filterInputReducer,
+    styles: styleReducer,
+    filterInput: filterInputReducer,
   },
 });

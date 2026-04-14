@@ -15,12 +15,11 @@ const stylesSlice = createSlice({
       state.style = "cards";
     },
   },
-  // selectors: {
-  //   selectStyle: (state) => state.style,
-  // },
+  selectors: {
+    selectStyle: (state) => state.style,
+  },
 });
 
-// export const { selectStyle } = stylesSlice.selectors;
-export const selectStyle = (state) => state.style.style;
+export const { selectStyle } = stylesSlice.selectors;
 export const { listStyle, cardStyle } = stylesSlice.actions;
 export default stylesSlice.reducer;

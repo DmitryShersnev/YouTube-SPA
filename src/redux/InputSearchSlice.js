@@ -4,6 +4,7 @@ const initialState = {
   inputSearch: "",
   request: "",
   videos: [],
+  amountOfVideos: null,
   done: false,
   loading: false,
 };
@@ -40,6 +41,11 @@ const inputSearchSlice = createSlice({
     clear: (state) => {
       state.inputSearch = "";
     },
+    filter: (state, action) => {
+      state.videos = state.videos.filter((item) =>
+        item.snippet.title.toLowerCase().includes(action.payload.toLowerCase()),
+      );
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -48,6 +54,7 @@ const inputSearchSlice = createSlice({
       })
       .addCase(fetchVideos.fulfilled, (state, action) => {
         state.videos = action.payload.items;
+        state.amountOfVideos = action.payload.pageInfo.totalResults;
         state.request = state.inputSearch;
         state.done = true;
         state.loading = false;
@@ -60,19 +67,21 @@ const inputSearchSlice = createSlice({
   selectors: {
     selectInputSearch: (state) => state.inputSearch,
     selectVideos: (state) => state.videos,
+    selectAmountOfVideos: (state) => state.amountOfVideos,
     selectDone: (state) => state.done,
     selectRequest: (state) => state.request,
     selectLoading: (state) => state.loading,
   },
 });
 
-export const { change, clear } = inputSearchSlice.actions;
+export const { change, clear, filter } = inputSearchSlice.actions;
 export const {
   selectVideos,
   selectInputSearch,
   selectDone,
   selectRequest,
   selectLoading,
+  selectAmountOfVideos,
 } = inputSearchSlice.selectors;
 
 export default inputSearchSlice.reducer;

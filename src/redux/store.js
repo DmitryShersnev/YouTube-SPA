@@ -5,6 +5,7 @@ import inputSearchReducer from "./InputSearchSlice";
 import favoritesReducer from "./FavoritesSlice";
 import modalReducer from "./ModalSlice";
 import styleReducer from "./StylesSlice";
+import filterInputReducer from "./FilterInputSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     favorites: favoritesReducer,
     modal: modalReducer,
     style: styleReducer,
+    inputString: filterInputReducer,
   },
 });

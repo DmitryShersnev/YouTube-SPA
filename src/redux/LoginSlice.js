@@ -7,7 +7,7 @@ export const login = createAsyncThunk(
   async (loginData, thunkAPI) => {
     try {
       const response = await fetch(
-        "https://todo-redev.herokuapp.com/api/auth/login",
+        "https://todo-redev.onrender.com/api/auth/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -16,7 +16,7 @@ export const login = createAsyncThunk(
       );
       const data = await response.json();
       if (response.ok) {
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("token", data.access_token);
       } else {
         return thunkAPI.rejectWithValue(data.message);
       }

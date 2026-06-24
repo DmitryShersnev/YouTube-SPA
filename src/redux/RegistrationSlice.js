@@ -5,7 +5,7 @@ export const registration = createAsyncThunk(
   async (regData, thunkAPI) => {
     try {
       const response = await fetch(
-        "https://todo-redev.herokuapp.com/api/users/register",
+        "https://todo-redev.onrender.com/api/users/register",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

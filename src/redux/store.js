@@ -6,6 +6,9 @@ import favoritesReducer from "./FavoritesSlice";
 import modalReducer from "./ModalSlice";
 import styleReducer from "./StylesSlice";
 import filterInputReducer from "./FilterInputSlice";
+import localStorageMiddleware from "./localStorageMiddleware";
+
+const middlewareArray = [localStorageMiddleware];
 
 export const store = configureStore({
   reducer: {
@@ -17,4 +20,8 @@ export const store = configureStore({
     styles: styleReducer,
     filterInput: filterInputReducer,
   },
+  middleware: (getDefaultMiddleWare) => [
+    ...getDefaultMiddleWare(),
+    ...middlewareArray,
+  ],
 });

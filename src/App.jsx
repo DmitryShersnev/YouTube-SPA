@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router";
 import "./App.css";
-import YouTubeSPA from "./YouTubeSPA";
-import Login from "./auth/Login";
-import PrivateRoute from "./auth/PrivateRoute";
-import Registration from "./auth/Registration";
-import Favorites from "./Favorites";
+import YouTubeSPA from "./pages/YouTubeSPA";
+import Login from "./pages/Login";
+import PrivateRoute from "./components/PrivateRoute";
+import Registration from "./pages/Registration";
+import Favorites from "./components/Favorites";
 
 function App() {
   return (

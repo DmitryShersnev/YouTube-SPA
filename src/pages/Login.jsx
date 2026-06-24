@@ -2,7 +2,7 @@ import { Form, Field, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-import { login } from "../redux/LoginSlice";
+import { login } from "../api/loginApi";
 
 const Login = () => {
   const initialValues = {

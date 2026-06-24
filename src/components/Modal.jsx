@@ -1,12 +1,12 @@
 import { Modal } from "antd";
 import { useSelector } from "react-redux";
-import { selectIsOpen } from "./redux/ModalSlice";
-import { close } from "./redux/ModalSlice";
+import { selectIsOpen } from "../redux/ModalSlice";
+import { close } from "../redux/ModalSlice";
 import { useDispatch } from "react-redux";
-import { addFavorite, updateFavorite } from "./redux/FavoritesSlice";
+import { addFavorite, updateFavorite } from "../redux/FavoritesSlice";
 import { useEffect } from "react";
 
-import { selectInputSearch } from "./redux/InputSearchSlice";
+import { selectInputSearch } from "../redux/InputSearchSlice";
 import { Form, Input, Select, Slider } from "antd";
 
 const ModalWindow = ({ item }) => {

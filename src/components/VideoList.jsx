@@ -5,13 +5,14 @@ import {
   selectLoading,
   selectVideos,
   selectAmountOfVideos,
-} from "./redux/InputSearchSlice";
+} from "../redux/InputSearchSlice";
 import VideoCard from "./VideoCard";
 import { useDispatch } from "react-redux";
 
-import { selectStyle } from "./redux/StylesSlice";
+import { selectStyle } from "../redux/StylesSlice";
 
-import { listStyle, cardStyle } from "./redux/StylesSlice";
+import { listStyle, cardStyle } from "../redux/StylesSlice";
+import { amountHelper } from "../helpers/amountHelper";
 
 const VideoList = () => {
   const videos = useSelector(selectVideos);
@@ -27,6 +28,8 @@ const VideoList = () => {
   const handleClickCards = () => {
     dipatch(cardStyle());
   };
+
+  const updateAmount = amountHelper(amount);
 
   if (loading) {
     return <p>Загрузка...</p>;
@@ -47,11 +50,8 @@ const VideoList = () => {
           }}
         >
           <p style={{}}>Видео по запросу: {request}</p>
-          {amount === 1000000 ? (
-            <p style={{ color: "#b0b0b0" }}>более 1 млн</p>
-          ) : (
-            <p style={{ color: "#b0b0b0" }}>{amount}</p>
-          )}
+
+          <p style={{ color: "#b0b0b0" }}>{updateAmount}</p>
         </div>
         <div className="listButtons">
           <button onClick={handleClickList}>Список</button>

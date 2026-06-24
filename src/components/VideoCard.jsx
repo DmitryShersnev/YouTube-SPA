@@ -1,28 +1,24 @@
 import { useState, useEffect } from "react";
+import { fetchViews } from "../api/fetchViews";
+import { amountHelper } from "../helpers/amountHelper";
 
 const VideoCard = ({ item, isList }) => {
   const videoId = item.id.videoId;
   const apiUrl = import.meta.env.VITE_API_URL2;
   const key = import.meta.env.VITE_API_KEY;
+
   const [viewCount, setViewCount] = useState(null);
 
-  const fetchViews = async () => {
-    try {
-      const res = await fetch(
-        `${apiUrl}?part=statistics&id=${videoId}&key=${key}`,
-      );
-      const data = await res.json();
-
-      setViewCount(data.items[0].statistics.viewCount);
-
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
-    fetchViews();
+    const getViewCount = async () => {
+      const views = await fetchViews(apiUrl, videoId, key);
+      setViewCount(views);
+    };
+
+    getViewCount();
   }, [videoId]);
+
+  const updateViews = amountHelper(viewCount);
 
   const containerStyle = isList
     ? { display: "flex", alignItems: "center", gap: "16px" }
@@ -40,6 +36,7 @@ const VideoCard = ({ item, isList }) => {
         gap: 20,
       }
     : { marginTop: 10, maxWidth: 300 };
+
   return (
     <div style={containerStyle}>
       <iframe
@@ -50,9 +47,8 @@ const VideoCard = ({ item, isList }) => {
       ></iframe>
       <div style={textContainerStyle}>
         <h3>{item.snippet.title}</h3>
-
         <div style={{ color: "#b0b0b0" }}>{item.snippet.channelTitle}</div>
-        <div style={{ color: "#b0b0b0" }}>{viewCount} просмотров</div>
+        <div style={{ color: "#b0b0b0" }}>{updateViews} просмотров</div>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchVideos } from "../api/fetchVideos";
 
 const initialState = {
   inputSearch: "",
@@ -8,28 +9,6 @@ const initialState = {
   done: false,
   loading: false,
 };
-
-const apiUrl = import.meta.env.VITE_API_URL;
-const key = import.meta.env.VITE_API_KEY;
-
-export const fetchVideos = createAsyncThunk(
-  "youtube/fetchVideos",
-  async ({ request, amount, sortBy }, thunkAPI) => {
-    try {
-      const response = await fetch(
-        `${apiUrl}?part=snippet&q=${request}&type=video&maxResults=${amount}&key=${key}&order=${sortBy}`,
-      );
-      const data = await response.json();
-
-      if (!response.ok) {
-        return thunkAPI.rejectWithValue(data);
-      }
-      return data;
-    } catch (error) {
-      return error;
-    }
-  },
-);
 
 const inputSearchSlice = createSlice({
   name: "inputSearch",

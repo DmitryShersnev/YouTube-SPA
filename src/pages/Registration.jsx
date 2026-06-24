@@ -1,7 +1,7 @@
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { registration } from "../redux/RegistrationSlice";
+import { registration } from "../api/registrationApi";
 import { useNavigate } from "react-router";
 
 const Registration = () => {

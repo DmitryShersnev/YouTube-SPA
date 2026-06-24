@@ -4,9 +4,10 @@ import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import ModalWindow from "./Modal";
 
-import { open, selectCurrentItem, selectIsOpen } from "./redux/ModalSlice";
-import { selectFavorites, deleteFavorite } from "./redux/FavoritesSlice";
-import { change, fetchVideos } from "./redux/InputSearchSlice";
+import { open, selectCurrentItem, selectIsOpen } from "../redux/ModalSlice";
+import { selectFavorites, deleteFavorite } from "../redux/FavoritesSlice";
+import { change } from "../redux/InputSearchSlice";
+import { fetchVideos } from "../api/fetchVideos";
 
 const Favorites = () => {
   const favorites = useSelector(selectFavorites);

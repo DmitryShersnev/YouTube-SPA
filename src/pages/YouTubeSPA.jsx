@@ -1,6 +1,6 @@
 import InputSearch from "../components/InputSearch";
 import VideoList from "../components/VideoList";
-import { selectDone } from "../redux/InputSearchSlice";
+import { selectDone } from "../redux/slices/InputSearchSlice";
 import { useSelector } from "react-redux";
 import Header from "../components/Header";
 

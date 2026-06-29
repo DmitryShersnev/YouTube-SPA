@@ -5,13 +5,13 @@ import {
   selectLoading,
   selectVideos,
   selectAmountOfVideos,
-} from "../redux/InputSearchSlice";
+} from "../redux/slices/InputSearchSlice";
 import VideoCard from "./VideoCard";
 import { useDispatch } from "react-redux";
 
-import { selectStyle } from "../redux/StylesSlice";
+import { selectStyle } from "../redux/slices/StylesSlice";
 
-import { listStyle, cardStyle } from "../redux/StylesSlice";
+import { listStyle, cardStyle } from "../redux/slices/StylesSlice";
 import { amountHelper } from "../helpers/amountHelper";
 
 const VideoList = () => {

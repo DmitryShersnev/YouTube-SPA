@@ -4,10 +4,10 @@ import {
   change,
   selectDone,
   selectInputSearch,
-} from "../redux/InputSearchSlice";
+} from "../redux/slices/InputSearchSlice";
 import { useState } from "react";
 import ModalWindow from "./Modal";
-import { open } from "../redux/ModalSlice";
+import { open } from "../redux/slices/ModalSlice";
 import { fetchVideos } from "../api/fetchVideos";
 
 const InputSearch = () => {

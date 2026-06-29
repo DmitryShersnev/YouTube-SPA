@@ -1,13 +1,14 @@
 import { Modal } from "antd";
 import { useSelector } from "react-redux";
-import { selectIsOpen } from "../redux/ModalSlice";
-import { close } from "../redux/ModalSlice";
+import { selectIsOpen } from "../redux/slices/ModalSlice";
+import { close } from "../redux/slices/ModalSlice";
 import { useDispatch } from "react-redux";
-import { addFavorite, updateFavorite } from "../redux/FavoritesSlice";
+import { addFavorite, updateFavorite } from "../redux/slices/FavoritesSlice";
 import { useEffect } from "react";
 
-import { selectInputSearch } from "../redux/InputSearchSlice";
+import { selectInputSearch } from "../redux/slices/InputSearchSlice";
 import { Form, Input, Select, Slider } from "antd";
+import { useForm } from "antd/es/form/Form";
 
 const ModalWindow = ({ item }) => {
   const inputSearch = useSelector(selectInputSearch);
@@ -44,60 +45,56 @@ const ModalWindow = ({ item }) => {
   };
 
   return (
-    <>
-      <Modal
-        title="Сохранить запрос"
-        closable={{ "aria-label": "Custom Close Button" }}
-        open={isOpen}
-        onOk={() => form.submit()}
-        onCancel={handleClickCancel}
-        okText={"Сохранить"}
-        cancelText={"Не сохранять"}
+    <Modal
+      title="Сохранить запрос"
+      closable={{ "aria-label": "Custom Close Button" }}
+      open={isOpen}
+      onOk={() => form.submit()}
+      onCancel={handleClickCancel}
+      okText={"Сохранить"}
+      cancelText={"Не сохранять"}
+    >
+      <Form
+        form={form}
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 15 }}
+        style={{ maxWidth: 600 }}
+        initialValues={{
+          request: inputSearch,
+          name: "",
+          sortBy: "relevance",
+          amount: 25,
+        }}
+        onFinish={(values) => handleClickOk(values)}
       >
-        <>
-          <Form
-            form={form}
-            labelCol={{ span: 6 }}
-            wrapperCol={{ span: 15 }}
-            style={{ maxWidth: 600 }}
-            initialValues={{
-              request: inputSearch,
-              name: "",
-              sortBy: "relevance",
-              amount: 25,
-            }}
-            onFinish={(values) => handleClickOk(values)}
-          >
-            <Form.Item label="Запрос" name="request">
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label="Название"
-              name="name"
-              rules={[{ required: true, message: "Напишите название!" }]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item label="Сортировать по" name="sortBy">
-              <Select
-                options={[
-                  { label: "По дате", value: "date" },
-                  { label: "По рейтингу", value: "rating" },
-                  { label: "По релевантности", value: "relevance" },
-                  { label: "По названию", value: "title" },
-                  { label: "По количеству видео", value: "videoCount" },
-                  { label: "По просмотрам", value: "viewCount" },
-                ]}
-              />
-            </Form.Item>
+        <Form.Item label="Запрос" name="request">
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Название"
+          name="name"
+          rules={[{ required: true, message: "Напишите название!" }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item label="Сортировать по" name="sortBy">
+          <Select
+            options={[
+              { label: "По дате", value: "date" },
+              { label: "По рейтингу", value: "rating" },
+              { label: "По релевантности", value: "relevance" },
+              { label: "По названию", value: "title" },
+              { label: "По количеству видео", value: "videoCount" },
+              { label: "По просмотрам", value: "viewCount" },
+            ]}
+          />
+        </Form.Item>
 
-            <Form.Item label="Количество" name="amount">
-              <Slider max={50} />
-            </Form.Item>
-          </Form>
-        </>
-      </Modal>
-    </>
+        <Form.Item label="Количество" name="amount">
+          <Slider max={50} />
+        </Form.Item>
+      </Form>
+    </Modal>
   );
 };
 export default ModalWindow;

@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import loginReducer from "./LoginSlice";
-import registrationReducer from "./RegistrationSlice";
-import inputSearchReducer from "./InputSearchSlice";
-import favoritesReducer from "./FavoritesSlice";
-import modalReducer from "./ModalSlice";
-import styleReducer from "./StylesSlice";
-import filterInputReducer from "./FilterInputSlice";
+import loginReducer from "./slices/LoginSlice";
+import registrationReducer from "./slices/RegistrationSlice";
+import inputSearchReducer from "./slices/InputSearchSlice";
+import favoritesReducer from "./slices/FavoritesSlice";
+import modalReducer from "./slices/ModalSlice";
+import styleReducer from "./slices/StylesSlice";
+import filterInputReducer from "./slices/FilterInputSlice";
 import localStorageMiddleware from "./localStorageMiddleware";
 
 const middlewareArray = [localStorageMiddleware];

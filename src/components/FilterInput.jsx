@@ -4,8 +4,8 @@ import {
   changeInput,
   clearInput,
   selectInputString,
-} from "../redux/FilterInputSlice";
-import { filter } from "../redux/InputSearchSlice";
+} from "../redux/slices/FilterInputSlice";
+import { filter } from "../redux/slices/InputSearchSlice";
 const FilterInput = () => {
   const dispatch = useDispatch();
   const inputString = useSelector(selectInputString);

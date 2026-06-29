@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchVideos } from "../api/fetchVideos";
+import { fetchVideos } from "../../api/fetchVideos";
 
 const initialState = {
   inputSearch: "",
